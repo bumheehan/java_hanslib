@@ -45,9 +45,8 @@
 
             </div>
             <h1 class="center">Response Body</h1>
-            <div class="border" id="ResponseBody">d
-
-
+            <div class="border" id="ResponseBody" th:each="line: ${list}">
+            	<span th:text="${line}"></span>
             </div>
 
 

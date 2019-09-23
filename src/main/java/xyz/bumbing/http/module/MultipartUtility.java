@@ -23,6 +23,8 @@ public class MultipartUtility {
 	private PrintWriter writer;
 
 	/**
+	 * 출처
+	 * https://stackoverflow.com/questions/34276466/simple-httpurlconnection-post-file-multipart-form-data-from-android-to-google-bl
 	 * This constructor initializes a new HTTP POST request with content type is set
 	 * to multipart/form-data
 	 *
@@ -128,4 +130,9 @@ public class MultipartUtility {
 		}
 		return response;
 	}
+
+	/*
+	 * 테스트
+	 */
+
 }

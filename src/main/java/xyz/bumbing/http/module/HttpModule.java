@@ -12,7 +12,8 @@ public class HttpModule {
 	public HttpModule() {
 	}
 
-	public static void connect(String urls) throws Exception {
+	// 연결 모듈
+	public void connect(String urls) throws Exception {
 		URL url = new URL(urls);
 		// HTTP Connection 구하기
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -95,4 +96,24 @@ public class HttpModule {
 		conn.disconnect();
 	}
 
+	public static void main(String[] args) throws Exception {
+
+		HttpURLConnection httpConn = (HttpURLConnection) new URL("http://localhost:8080/http/input").openConnection();
+//		httpConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + "----");
+		httpConn.setRequestProperty("Content-Type", "text/html");
+
+		// 응답 내용(BODY) 구하기
+		try (InputStream in = httpConn.getInputStream(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+
+			byte[] buf = new byte[1024 * 8];
+			int length = 0;
+			while ((length = in.read(buf)) != -1) {
+				out.write(buf, 0, length);
+			}
+			System.out.println(new String(out.toByteArray(), "UTF-8"));
+		}
+
+		// 접속 해제
+		httpConn.disconnect();
+	}
 }
